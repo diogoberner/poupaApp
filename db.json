@@ -1,4 +1,10 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 1.7469118578742932e+21,
+      "nome": "Diogo",
+      "renda": 2000
+    }
+  ],
   "transactions": []
 }

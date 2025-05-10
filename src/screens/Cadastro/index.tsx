@@ -13,6 +13,8 @@ import Botao from "../../componentes/Botao/index.js";
 import CampoTexto from "../../componentes/CampoTexto/index.js";
 import Fieldset from "../../componentes/Fieldset/index.js";
 import Label from "../../componentes/Label/index.js";
+import { createUser } from "../../api/index.js";
+import { uid } from "../../utils.js";
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
@@ -22,6 +24,12 @@ const Cadastro = () => {
 
   const aoSubmeterFormulario = (evento: React.FormEvent) => {
     evento.preventDefault();
+    const usuario = {
+      id: Number(uid()),
+      nome,
+      renda: Number(renda),
+    };
+    createUser(usuario);
     navigate("/home");
   };
 
