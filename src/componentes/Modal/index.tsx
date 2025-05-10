@@ -15,7 +15,7 @@ interface ModalProps {
 }
 
 const Modal = forwardRef<ModalHandler, ModalProps>(
-  ({ icon, titulo, children }, ref) => {
+  ({ icon, titulo, children, aoClicar }, ref) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     const closeModal = () => {
@@ -24,7 +24,7 @@ const Modal = forwardRef<ModalHandler, ModalProps>(
 
     useImperativeHandle(ref, () => {
       return {
-        open: () => dialogRef.current?.showModal,
+        open: () => dialogRef.current?.showModal(),
         close: () => closeModal(),
       };
     });
@@ -43,7 +43,7 @@ const Modal = forwardRef<ModalHandler, ModalProps>(
           <Botao $variante="secundario" onClick={() => closeModal()}>
             Cancelar
           </Botao>
-          <Botao $variante="primario" onClick={aoClicar}>
+          <Botao $variante="primario" onClick={() => aoClicar()}>
             Adicionar
           </Botao>
         </ButtonGroup>
