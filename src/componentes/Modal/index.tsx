@@ -12,14 +12,23 @@ interface ModalProps {
   titulo: string;
   children: React.ReactNode;
   aoClicar: () => void;
+  clickOutsideModal?: boolean;
 }
 
 const Modal = forwardRef<ModalHandler, ModalProps>(
-  ({ icon, titulo, children, aoClicar }, ref) => {
+  ({ icon, titulo, children, aoClicar, clickOutsideModal = true }, ref) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     const closeModal = () => {
       dialogRef.current?.close();
+    };
+
+    const closeOnBackdropClick = (
+      event: React.MouseEvent<HTMLDialogElement>
+    ) => {
+      if (clickOutsideModal && event.target === dialogRef.current) {
+        closeModal();
+      }
     };
 
     useImperativeHandle(ref, () => {
@@ -30,7 +39,7 @@ const Modal = forwardRef<ModalHandler, ModalProps>(
     });
 
     return (
-      <ModalContainer ref={dialogRef}>
+      <ModalContainer ref={dialogRef} onClick={closeOnBackdropClick}>
         <ModalHeader>
           <div>
             {icon}
@@ -43,7 +52,13 @@ const Modal = forwardRef<ModalHandler, ModalProps>(
           <Botao $variante="secundario" onClick={() => closeModal()}>
             Cancelar
           </Botao>
-          <Botao $variante="primario" onClick={() => aoClicar()}>
+          <Botao
+            $variante="primario"
+            onClick={() => {
+              closeModal();
+              aoClicar();
+            }}
+          >
             Adicionar
           </Botao>
         </ButtonGroup>
