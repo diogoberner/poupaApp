@@ -25,7 +25,7 @@ const Cadastro = () => {
   const aoSubmeterFormulario = (evento: React.FormEvent) => {
     evento.preventDefault();
     const usuario = {
-      id: Number(uid()),
+      id: uid(),
       nome,
       renda: Number(renda),
     };

@@ -1,5 +1,5 @@
-export const uid = (): string =>
-  Date.now().toString() +
-  Math.floor(Math.random() * 1_000_000_000)
-    .toString()
-    .padStart(9, "0");
+export const uid = () =>
+  String(Date.now().toString(32) + Math.random().toString(16)).replace(
+    /\./g,
+    ""
+  );
