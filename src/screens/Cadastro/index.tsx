@@ -17,8 +17,10 @@ import { uid } from "../../utils.js";
 import useAppContext from "../../context/useAppContext.js";
 
 const Cadastro = () => {
-  const [nome, setNome] = useState("");
-  const [renda, setRenda] = useState("");
+  const [form, setForm] = useState({
+    nome: "",
+    renda: "",
+  });
   const { addUser } = useAppContext();
 
   const navigate = useNavigate();
@@ -27,11 +29,21 @@ const Cadastro = () => {
     evento.preventDefault();
     const usuario = {
       id: uid(),
-      nome,
-      renda: Number(renda),
+      nome: form.nome,
+      renda: Number(form.renda),
     };
     addUser(usuario);
     navigate("/home");
+  };
+
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setForm((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   return (
@@ -50,8 +62,8 @@ const Cadastro = () => {
               <CampoTexto
                 type="text"
                 name="nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
+                value={form.nome}
+                onChange={onInputChange}
               />
             </Fieldset>
             <Fieldset>
@@ -59,8 +71,8 @@ const Cadastro = () => {
               <CampoTexto
                 type="text"
                 name="renda"
-                value={renda}
-                onChange={(e) => setRenda(e.target.value)}
+                value={form.renda}
+                onChange={onInputChange}
               />
             </Fieldset>
           </Form>
