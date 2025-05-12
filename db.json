@@ -21,5 +21,14 @@
       "renda": 5000
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "id": "1ir2smksg005c71107caa978",
+      "nome": "Compra na padaria",
+      "valor": 20,
+      "tipo": "despesa",
+      "categoria": "Alimentação",
+      "data": "2025-04-25"
+    }
+  ]
 }
