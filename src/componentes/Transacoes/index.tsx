@@ -40,33 +40,6 @@ export const ListaMovimentacoes = styled.ul`
   -ms-overflow-style: none;
 `;
 
-// const transacoes = [
-//   {
-//     id: 1,
-//     nome: "Compra de supermercado",
-//     valor: 150,
-//     tipo: "despesa",
-//     categoria: "Alimentação",
-//     data: "2024-10-10",
-//   },
-//   {
-//     id: 2,
-//     nome: "Pagamento de aluguel",
-//     valor: 1000,
-//     tipo: "despesa",
-//     categoria: "Moradia",
-//     data: "2024-10-05",
-//   },
-//   {
-//     id: 3,
-//     nome: "Recebimento de salário",
-//     valor: 3000,
-//     tipo: "receita",
-//     categoria: "Renda",
-//     data: "2024-10-01",
-//   },
-// ];
-
 const Transacoes = () => {
   const modalRef = useRef<ModalHandler>(null);
   const { transacoes, addTransaction } = useAppContext();
@@ -81,8 +54,8 @@ const Transacoes = () => {
     }
   );
 
-  const adicionarTransacao = () => {
-    addTransaction({ ...novaTransacao, id: uid() });
+  const adicionarTransacao = async () => {
+    await addTransaction({ ...novaTransacao, id: uid() });
     setNovaTransacao({
       nome: "",
       valor: 0,

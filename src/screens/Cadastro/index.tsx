@@ -15,11 +15,12 @@ import Fieldset from "../../componentes/Fieldset/index.js";
 import Label from "../../componentes/Label/index.js";
 import { uid } from "../../utils.js";
 import useAppContext from "../../context/useAppContext.js";
+import { IUser } from "../../types/index.js";
 
 const Cadastro = () => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<Omit<IUser, "id" | "orcamentoDiario">>({
     nome: "",
-    renda: "",
+    renda: 0,
   });
   const { addUser } = useAppContext();
 

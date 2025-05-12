@@ -15,9 +15,15 @@ export const getAllUsers = async (): Promise<IUser[]> => {
   }
 };
 
-export const createUser = async (user: IUser): Promise<IUser | null> => {
+export const createUser = async (
+  user: Omit<IUser, "orcamentoDiario">
+): Promise<IUser | null> => {
+  const userWithDailyBudget = {
+    ...user,
+    orcamentoDiario: user.renda / 30,
+  };
   try {
-    const response = await api.post<IUser>("/users", user);
+    const response = await api.post<IUser>("/users", userWithDailyBudget);
     return response.data;
   } catch (error) {
     console.error("Erro ao adicionar usuário:", error);

@@ -9,7 +9,7 @@ import {
 
 interface AppContextType {
   usuario: IUser | null;
-  addUser: (user: IUser) => Promise<void>;
+  addUser: (user: Omit<IUser, "orcamentoDiario">) => Promise<void>;
   transacoes: ITransactions[];
   addTransaction: (transaction: ITransactions) => Promise<void>;
 }
@@ -34,7 +34,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const addUser = async (user: IUser) => {
+  const addUser = async (user: Omit<IUser, "orcamentoDiario">) => {
     try {
       const newUser = await createUser(user);
       if (newUser) {
