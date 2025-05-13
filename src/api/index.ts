@@ -31,6 +31,19 @@ export const createUser = async (
   }
 };
 
+export const updateUser = async (
+  id: string,
+  user: IUser
+): Promise<IUser | null> => {
+  try {
+    const response = await api.patch<IUser>(`/users/${id}`, user);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao atualizar usuário:", error);
+    return null;
+  }
+};
+
 export const getAllTransactions = async (): Promise<ITransactions[]> => {
   try {
     const response = await api.get<ITransactions[]>("/transactions");
