@@ -33,7 +33,7 @@ export const createUser = async (
 
 export const updateUser = async (
   id: string,
-  user: IUser
+  user: Partial<IUser>
 ): Promise<IUser | null> => {
   try {
     const response = await api.patch<IUser>(`/users/${id}`, user);
@@ -55,16 +55,45 @@ export const getAllTransactions = async (): Promise<ITransactions[]> => {
 };
 
 export const createTransaction = async (
-  transaction: ITransactions
-): Promise<ITransactions | null> => {
+  transaction: ITransactions,
+  user: Omit<IUser, "nome">
+): Promise<{
+  newTransaction: ITransactions;
+  newDailyBudget: number;
+} | null> => {
+  const transactionWithUserId = {
+    ...transaction,
+    userId: user.id,
+  };
   try {
     const response = await api.post<ITransactions>(
       "/transactions",
-      transaction
+      transactionWithUserId
     );
-    return response.data;
+
+    const transactions = await getAllTransactions();
+    const balance = calculateBalance(transactions);
+
+    const newDailyBudget = user.renda / 30 + balance;
+    await updateUser(user.id, {
+      orcamentoDiario: newDailyBudget,
+    });
+
+    return {
+      newTransaction: response.data,
+      newDailyBudget,
+    };
   } catch (error) {
     console.error("Erro a adicionar transação:", error);
     return null;
   }
+};
+
+const calculateBalance = (transactions: ITransactions[]) => {
+  const total = transactions.reduce((total, transaction) => {
+    return transaction.tipo === "receita"
+      ? total + transaction.valor
+      : total - transaction.valor;
+  }, 0);
+  return total;
 };

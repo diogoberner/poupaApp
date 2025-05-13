@@ -11,7 +11,7 @@ interface AppContextType {
   usuario: IUser | null;
   addUser: (user: Omit<IUser, "orcamentoDiario">) => Promise<void>;
   transacoes: ITransactions[];
-  addTransaction: (transaction: ITransactions) => Promise<void>;
+  addTransaction: (transaction: ITransactions, user: IUser) => Promise<void>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -45,11 +45,24 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const addTransaction = async (transaction: ITransactions) => {
+  const addTransaction = async (transaction: ITransactions, user: IUser) => {
     try {
-      const response = await createTransaction(transaction);
+      if (!user) {
+        throw new Error("Não podemos adicionar uma transação sem um usuário.");
+      }
+      const response = await createTransaction(transaction, user);
+
       if (response) {
-        setTransacoes((prev) => [...prev, response]);
+        const { newTransaction, newDailyBudget } = response;
+        setTransacoes((prev) => [...prev, newTransaction]);
+        setUsuario((prev) =>
+          prev
+            ? {
+                ...prev,
+                orcamentoDiario: newDailyBudget,
+              }
+            : prev
+        );
       }
     } catch (error) {
       console.error("Erro ao adicionar nova transação:", error);

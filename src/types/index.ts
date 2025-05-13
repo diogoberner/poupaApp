@@ -7,6 +7,7 @@ export interface IUser {
 
 export interface ITransactions {
   id: string;
+  userId: string;
   nome: string;
   valor: number;
   tipo: "receita" | "despesa" | "";

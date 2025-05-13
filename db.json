@@ -1,26 +1,39 @@
 {
   "users": [
     {
-      "id": "1ir398rut082a424f93b7f08",
+      "id": "1ir5o91j30a0cd7dd58b461",
       "nome": "Diogo Berner",
-      "renda": 5000,
-      "orcamentoDiario": 166.66666666666666
-    },
-    {
-      "id": "1ir3c9qrn0d5917adb40c07",
-      "nome": "Diogo Berner",
-      "renda": 5000,
-      "orcamentoDiario": 166.66666666666666
+      "renda": 3000,
+      "orcamentoDiario": 130
     }
   ],
   "transactions": [
     {
-      "id": "1ir2smksg005c71107caa978",
-      "nome": "Compra na padaria",
-      "valor": 20,
+      "id": "1ir5oquli0376b6dcc73beb8",
+      "nome": "Pão",
+      "valor": 25,
       "tipo": "despesa",
       "categoria": "Alimentação",
-      "data": "2025-04-25"
+      "data": "2025-05-13",
+      "userId": "1ir5o91j30a0cd7dd58b461"
+    },
+    {
+      "id": "1ir5pcl2c048d300abaed9d8",
+      "nome": "Pix",
+      "valor": 100,
+      "tipo": "receita",
+      "categoria": "Entrada",
+      "data": "2025-05-13",
+      "userId": "1ir5o91j30a0cd7dd58b461"
+    },
+    {
+      "id": "1ir5qb0n009c44ad3cd10628",
+      "nome": "Livro",
+      "valor": 45,
+      "tipo": "despesa",
+      "categoria": "Estudos",
+      "data": "2025-05-13",
+      "userId": "1ir5o91j30a0cd7dd58b461"
     }
   ]
 }

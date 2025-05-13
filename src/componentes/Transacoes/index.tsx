@@ -42,20 +42,26 @@ export const ListaMovimentacoes = styled.ul`
 
 const Transacoes = () => {
   const modalRef = useRef<ModalHandler>(null);
-  const { transacoes, addTransaction } = useAppContext();
+  const { usuario, transacoes, addTransaction } = useAppContext();
 
-  const [novaTransacao, setNovaTransacao] = useState<Omit<ITransactions, "id">>(
-    {
-      nome: "",
-      valor: 0,
-      tipo: "",
-      categoria: "",
-      data: "",
-    }
-  );
+  const [novaTransacao, setNovaTransacao] = useState<
+    Omit<ITransactions, "id" | "userId">
+  >({
+    nome: "",
+    valor: 0,
+    tipo: "",
+    categoria: "",
+    data: "",
+  });
 
   const adicionarTransacao = async () => {
-    await addTransaction({ ...novaTransacao, id: uid() });
+    if (!usuario) {
+      throw new Error("Não podemos adicionar uma transação sem um usuário.");
+    }
+    await addTransaction(
+      { ...novaTransacao, id: uid(), userId: usuario.id },
+      usuario
+    );
     setNovaTransacao({
       nome: "",
       valor: 0,
