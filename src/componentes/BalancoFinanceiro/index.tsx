@@ -1,26 +1,20 @@
 import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from "recharts";
 import { Cartao, CartaoCabecalho, CartaoCorpo } from "../Cartao";
 import styled from "styled-components";
+import useExpensesByCategories from "../../hooks/useExpensesByCategories";
 
 export const AreaChart = styled.div`
   padding: var(--padding-xs);
 `;
 
 const BalancoFinanceiro = () => {
-  const data = [
-    {
-      categoria: "Alimentação",
-      gastos: 250,
-    },
-    {
-      categoria: "Calçados",
-      gastos: 200,
-    },
-    {
-      categoria: "Comida",
-      gastos: 150,
-    },
-  ];
+  const expensesByCategories = useExpensesByCategories();
+  const data = Object.entries(expensesByCategories).map(
+    ([categoria, gastos]) => ({
+      categoria,
+      gastos,
+    })
+  );
   return (
     <Cartao>
       <CartaoCabecalho>Gastos por categoria</CartaoCabecalho>

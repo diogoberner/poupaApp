@@ -5,6 +5,12 @@
       "nome": "Diogo Berner",
       "renda": 3000,
       "orcamentoDiario": 130
+    },
+    {
+      "id": "1ir86t8l30fb365e70f4d4e8",
+      "nome": "Diogo Berner",
+      "renda": 3000,
+      "orcamentoDiario": -3
     }
   ],
   "transactions": [
@@ -22,7 +28,7 @@
       "nome": "Pix",
       "valor": 100,
       "tipo": "receita",
-      "categoria": "Entrada",
+      "categoria": "Pagamento",
       "data": "2025-05-13",
       "userId": "1ir5o91j30a0cd7dd58b461"
     },
@@ -34,6 +40,24 @@
       "categoria": "Estudos",
       "data": "2025-05-13",
       "userId": "1ir5o91j30a0cd7dd58b461"
+    },
+    {
+      "id": "1ir88o02c09a4ec23b862628",
+      "nome": "Pão de queijo",
+      "valor": 13,
+      "tipo": "despesa",
+      "categoria": "Alimentação",
+      "data": "2025-05-14",
+      "userId": "1ir86t8l30fb365e70f4d4e8"
+    },
+    {
+      "id": "1ir89vu1r0144445e5627008",
+      "nome": "Curso",
+      "valor": 120,
+      "tipo": "despesa",
+      "categoria": "Estudos",
+      "data": "2025-05-12",
+      "userId": "1ir86t8l30fb365e70f4d4e8"
     }
   ]
 }
