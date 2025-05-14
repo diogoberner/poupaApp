@@ -1,64 +1,60 @@
-![PoupApp](thumb.png)
+# PolpaApp - Gerenciador Financeiro
 
-# 💰 PoupApp
+O **PolpaApp** é uma aplicação de gerenciamento financeiro que desenvolvi para praticar conceitos de **React** e **TypeScript**, com foco em gerenciamento de estados utilizando a **Context API**. A ideia do projeto é criar uma solução simples e eficiente para ajudar usuários a controlar suas finanças pessoais.
 
-O PoupApp é uma plataforma de gerenciamento financeiro voltada para ajudar usuários a organizar suas finanças. Focado na simplicidade, o PoupApp permite que os usuários acompanhem seus gastos, definam metas financeiras e visualizem seu progresso através de gráficos dinâmicos. 
+## Funcionalidades
 
-Com funcionalidades que incentivam o controle de despesas e a organização do orçamento diário, o PoupApp se torna o parceiro ideal para quem busca saúde financeira e realização de objetivos pessoais.
+- **Tela de Inscrição**: O usuário pode inscrever seu nome e renda mensal.
+- **Dashboard**: Após o login, o usuário é levado para o dashboard, onde são exibidos:
+  - Seu nome.
+  - Orçamento diário disponível.
+  - Gráfico de gastos por categoria.
+  - Lista de transações financeiras do dia.
 
-<p align="center">
-  <img src="./poupapp-home.png" alt="Página Inicial" width="30%" style="vertical-align: top; margin-right: 20px;" />
-</p>
+## Tecnologias Utilizadas
 
-## 🔨 Funcionalidades do projeto
+- **React**: Biblioteca principal para a construção da interface.
+- **TypeScript**: Tipagem forte para garantir a consistência e a confiabilidade do código.
+- **Context API**: Gerenciamento de estados globais da aplicação, evitando o **prop drilling**.
+- **JSON Server**: Utilizado para simular uma API fake e persistir dados entre recargas da página.
+- **Axios**: Para realizar chamadas HTTP e integrar a aplicação com a API.
 
-O PoupApp oferece as seguintes funcionalidades:
+## Funcionalidades Desenvolvidas
 
-- Acompanhar o orçamento diário e manter o controle das suas despesas.
-- Realizar transações de maneira prática, adicionando despesas e receitas.
-- Analisar seus gastos por meio de gráficos dinâmicos, categorizando as despesas para melhor entendimento.
+### 1. Criação de Modal Reutilizável
 
-## ✔️ Técnicas e tecnologias utilizadas
+- Refatoração de uma modal para torná-la reutilizável e controlável utilizando **useRef** e **useImperativeHandle**.
+- Implementação de acessibilidade, permitindo navegação através da tecla **Tab** e fechamento com **Esc**.
 
-O projeto foi desenvolvido utilizando as seguintes tecnologias:
+### 2. Back-End com JSON Server
 
-- `Typescript` - Linguagem que adiciona tipagem estática ao JavaScript.
-- `React.js` - Biblioteca para construção de interfaces dinâmicas.
-- `Vite` - Ferramenta de construção rápida para desenvolvimento com JavaScript moderno.
-- `Styled-components` - Para estilização de componentes com CSS-in-JS.
-- `Context API` - Gerenciamento de estado de forma reativa.
-- `React Router` - Para navegação entre páginas da aplicação.
-- `Recharts` - Para criação e visualização de gráficos.
-- `Figma` - Para prototipagem e design visual do projeto.
+- Configuração de uma API fake utilizando **JSON Server**.
+- Criação de endpoints para **usuários** e **transações**.
+- Utilização de **Axios** para fazer chamadas HTTP com tipagem **TypeScript**.
 
-E outras dependências e ferramentas auxiliares.
+### 3. Gerenciamento de Estado com Context API
 
-## 🛠️ Abrir e rodar o projeto
+- Criação de um **contexto global** com **createContext** e **AppProvider** para centralizar estados e funções.
+- Implementação de um **hook customizado (useAppContext)** para garantir acesso seguro ao contexto global.
 
-Para rodar o projeto em sua máquina local, siga estes passos:
+### 4. Gerenciamento de Transações e Orçamento Diário
 
-1. Baixe o repositório do projeto para o seu computador.
+- Gerenciamento das transações do usuário com **useState** e **iTransações**.
+- Cálculo automático do **orçamento diário** disponível.
+- Integração da API com o estado global utilizando a **Context API**.
 
-2. Navegue até a pasta do projeto, extraia os arquivos e abra no seu editor de código favorito. 
+### 5. Exibição de Gastos por Categoria
 
-3. Instale as dependências executando:
+- Cálculo do **saldo do usuário** e atualização dinâmica do orçamento diário.
+- Exibição dos gastos organizados por categoria, com gráficos.
+- Utilização de **useMemo** para otimização de cálculos e manipulação de dados.
 
-    ```bash
-    npm install
-    ```
+### 6. Aprendizados
 
-4. Para iniciar o servidor de desenvolvimento, utilize o comando:
+- Este projeto foi desenvolvido como parte do meu aprendizado em um curso da Alura e abordou conceitos importantes como:
+- Gerenciamento de estados globais com a Context API.
+- Tipagem forte com TypeScript para aumentar a confiabilidade do código.
+- Criação de modais reutilizáveis e acessíveis.
+- Integração com uma API fake usando JSON Server.
 
-    ```bash
-    npm run dev
-    ```
-
-5. O projeto estará disponível em http://localhost:5173.
-
-## 📚 Mais informações do curso
-
-Gostou do projeto e quer conhecer mais?
-
-O design e protótipo deste projeto podem ser encontrados [aqui](https://www.figma.com/community/file/1468989433664551328). Este projeto é fictício e sem fins lucrativos. 
-
-Aproveite o desenvolvimento e aprimoramento do PoupApp!
+Espero que este projeto sirva como uma boa base para aplicações mais complexas e me ajude a continuar aprimorando minhas habilidades em React e TypeScript!
